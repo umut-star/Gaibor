@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Plan de Crecimiento · IB 61694 — Gaibor</title>
+<style>
+  :root{
+    --ink:#0d1535; --ink2:#121C46; --gold:#9C7B22; --gold2:#d8b65a;
+    --line:rgba(216,182,90,.28); --txt:#e9edf7; --mut:#9aa6c6;
+    --logrado:#3fae6b; --sig:#d8b65a; --bloq:#8892b0; --blue:#5b7cc6;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{font-family:Arial,Helvetica,sans-serif;color:var(--txt);
+    background:
+      radial-gradient(1100px 700px at 85% -8%, rgba(156,123,34,.20), transparent 60%),
+      radial-gradient(900px 800px at -10% 108%, rgba(156,123,34,.10), transparent 55%),
+      linear-gradient(160deg,#0d1535 0%,#121C46 48%,#0a1130 100%);
+    min-height:100vh;padding:0 20px 90px;}
+  .wrap{max-width:1000px;margin:0 auto;}
+
+  /* hero */
+  header{position:relative;padding:52px 6px 24px;overflow:hidden;}
+  .heromotif{position:absolute;right:-10px;top:38px;width:320px;height:230px;opacity:.15;pointer-events:none;}
+  .brand{display:flex;align-items:center;gap:13px;letter-spacing:5px;font-size:15px;font-weight:700;color:var(--gold2);text-transform:uppercase;position:relative;}
+  .brand .dot{width:11px;height:11px;background:var(--gold);border-radius:50%;box-shadow:0 0 0 5px rgba(156,123,34,.18);}
+  .kicker{margin-top:30px;font-size:14px;letter-spacing:6px;text-transform:uppercase;color:var(--gold);font-weight:700;position:relative;}
+  .goldline{width:78px;height:4px;background:var(--gold);margin:14px 0 18px;border-radius:3px;}
+  h1{font-size:52px;line-height:1.02;font-weight:800;letter-spacing:-1px;position:relative;}
+  h1 span{color:var(--gold2);}
+  .sub{margin-top:14px;font-size:18px;color:#cfd6ea;font-weight:600;}
+  .idrow{margin-top:24px;display:flex;gap:44px;flex-wrap:wrap;border-top:1px solid rgba(255,255,255,.14);padding-top:20px;position:relative;}
+  .idrow .lab{font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--mut);}
+  .idrow .val{font-size:23px;font-weight:800;margin-top:5px;}
+  .idrow .val.gold{color:var(--gold2);}
+
+  h2.sec{font-size:14px;letter-spacing:4px;text-transform:uppercase;color:var(--gold2);font-weight:700;margin:40px 4px 4px;}
+  .seclead{color:var(--mut);font-size:14px;margin:0 4px 18px;line-height:1.5;}
+
+  /* ---------- RUTA staircase ---------- */
+  .rutabox{background:rgba(255,255,255,.03);border:1px solid var(--line);border-radius:18px;padding:26px 20px 18px;overflow-x:auto;}
+  .stair{display:flex;align-items:flex-end;gap:14px;min-width:940px;padding-top:56px;position:relative;}
+  .rung{flex:1;min-width:145px;position:relative;border-radius:14px;padding:14px 14px 16px;
+    background:linear-gradient(180deg,rgba(20,29,73,.92),rgba(13,21,53,.92));border:1px solid rgba(255,255,255,.10);}
+  .rung .est{position:absolute;top:-13px;left:50%;transform:translateX(-50%);white-space:nowrap;
+    font-size:10px;letter-spacing:1.5px;text-transform:uppercase;font-weight:800;color:#0d1535;
+    padding:4px 12px;border-radius:999px;}
+  .rung .nl{font-size:15px;font-weight:800;margin-top:4px;}
+  .rung .nsub{font-size:11px;color:var(--gold2);font-weight:700;margin-top:2px;font-style:italic;}
+  .rung .kpi{margin-top:10px;font-size:13px;font-weight:800;line-height:1.5;color:#fff;}
+  .rung .kpi small{display:block;font-size:10px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--mut);}
+  .rung .unl{margin-top:10px;font-size:11px;color:#cfd6ea;line-height:1.4;border-top:1px solid rgba(255,255,255,.1);padding-top:8px;}
+  .rung .unl b{color:var(--gold2);}
+  /* estado variants */
+  .rung.logrado{border-color:var(--logrado);box-shadow:0 0 0 1px rgba(63,174,107,.4);}
+  .rung.logrado .est{background:var(--logrado);color:#04210f;}
+  .rung.sig{border-color:var(--sig);box-shadow:0 12px 30px rgba(0,0,0,.35),0 0 0 1px rgba(216,182,90,.5);}
+  .rung.sig .est{background:linear-gradient(145deg,var(--gold2),var(--gold));}
+  .rung.bloq{opacity:.9;}
+  .rung.bloq .est{background:var(--bloq);color:#0d1535;}
+  /* ascending */
+  .stair .rung:nth-child(1){margin-bottom:0;}
+  .stair .rung:nth-child(2){margin-bottom:36px;}
+  .stair .rung:nth-child(3){margin-bottom:72px;}
+  .stair .rung:nth-child(4){margin-bottom:104px;}
+  .stair .rung:nth-child(5){margin-bottom:140px;}
+  .stair .rung:nth-child(6){margin-bottom:172px;}
+  /* "estás acá" pointer on base */
+  .youare{position:absolute;top:-40px;left:0;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;
+    font-weight:800;color:var(--logrado);}
+  .youare::after{content:"";display:block;width:2px;height:22px;background:var(--logrado);margin-top:4px;margin-left:10px;
+    box-shadow:0 0 8px rgba(63,174,107,.6);}
+  .legend{display:flex;gap:22px;flex-wrap:wrap;margin-top:22px;padding-left:4px;}
+  .legend span{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--mut);}
+  .legend i{width:14px;height:14px;border-radius:4px;display:inline-block;}
+
+  /* ---------- regla callout ---------- */
+  .callout{margin-top:22px;background:rgba(156,123,34,.10);border:1px solid var(--line);border-left:4px solid var(--gold);
+    border-radius:0 14px 14px 0;padding:16px 20px;font-size:14px;color:#dfe4f2;line-height:1.6;}
+  .callout b{color:var(--gold2);}
+
+  /* ---------- detail levels ---------- */
+  #levels{position:relative;padding-left:30px;margin-top:12px;}
+  #levels::before{content:"";position:absolute;left:12px;top:14px;bottom:24px;width:4px;background:rgba(255,255,255,.10);border-radius:3px;}
+  #levels .rail{position:absolute;left:12px;top:14px;width:4px;height:0;border-radius:3px;
+    background:linear-gradient(180deg,var(--gold2),var(--gold));box-shadow:0 0 14px rgba(216,182,90,.5);transition:height 1s ease;}
+  .level{position:relative;margin:14px 0;border:1px solid var(--line);border-radius:16px;
+    background:linear-gradient(180deg,rgba(20,29,73,.9),rgba(13,21,53,.9));overflow:hidden;
+    opacity:0;transform:translateY(24px);transition:opacity .6s,transform .6s,border-color .3s,box-shadow .3s;}
+  .level.show{opacity:1;transform:none;}
+  .level.open{border-color:var(--gold2);box-shadow:0 14px 44px rgba(0,0,0,.4);}
+  .level::before{content:"";position:absolute;left:-30px;top:26px;width:16px;height:16px;border-radius:50%;
+    background:var(--ink);border:3px solid rgba(255,255,255,.18);}
+  .level.show::before{border-color:var(--gold2);box-shadow:0 0 0 5px rgba(156,123,34,.18);}
+  .lhead{display:flex;align-items:center;gap:16px;padding:16px 20px;cursor:pointer;user-select:none;}
+  .badge{flex:none;width:52px;height:52px;border-radius:13px;display:grid;place-items:center;
+    background:linear-gradient(145deg,rgba(216,182,90,.22),rgba(156,123,34,.10));border:1px solid var(--line);}
+  .badge svg{width:28px;height:28px;stroke:var(--gold2);fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;}
+  .ltitle{flex:1;}
+  .ltitle .nvl{font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);font-weight:700;}
+  .ltitle .t{font-size:18px;font-weight:800;margin-top:2px;}
+  .ltitle .unlock{font-size:13px;color:var(--gold2);margin-top:3px;font-weight:700;}
+  .esttag{flex:none;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;font-weight:800;color:#0d1535;padding:5px 11px;border-radius:999px;}
+  .esttag.logrado{background:var(--logrado);color:#04210f;}
+  .esttag.sig{background:linear-gradient(145deg,var(--gold2),var(--gold));}
+  .esttag.bloq{background:var(--bloq);}
+  .chev{flex:none;color:var(--gold2);font-size:20px;transition:transform .3s;}
+  .level.open .chev{transform:rotate(180deg);}
+  .lbody{max-height:0;overflow:hidden;transition:max-height .5s ease;}
+  .lbody .inner{padding:2px 20px 22px;}
+  .metabar{display:flex;gap:9px;flex-wrap:wrap;margin:4px 0 14px;}
+  .chip{background:rgba(156,123,34,.14);border:1px solid var(--line);border-radius:999px;padding:6px 13px;font-size:13px;font-weight:700;color:var(--gold2);}
+  .field{margin-top:11px;}
+  .field .fl{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--mut);margin-bottom:6px;}
+  .field ul{list-style:none;}
+  .field li{position:relative;padding-left:19px;margin-bottom:6px;font-size:14.5px;line-height:1.5;color:#dfe4f2;}
+  .field li::before{content:"";position:absolute;left:2px;top:8px;width:7px;height:7px;border-radius:2px;background:var(--gold);}
+  .field li b{color:var(--gold2);}
+  .earn{margin-top:16px;background:rgba(10,17,48,.5);border:1px solid rgba(216,182,90,.22);border-radius:12px;padding:13px 16px;}
+  .earn .er{display:flex;justify-content:space-between;align-items:baseline;}
+  .earn .ei{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--mut);}
+  .earn .ev{font-size:24px;font-weight:800;color:var(--gold2);}
+  .earn .ev small{color:var(--mut);font-size:12px;font-weight:600;}
+  .earn .ehint{font-size:11px;color:var(--mut);margin-top:6px;}
+
+  /* base kpi + gap */
+  .base{margin:8px 0 6px;background:rgba(255,255,255,.04);border:1px solid var(--line);border-radius:16px;padding:20px 22px;}
+  .base h3{font-size:12px;letter-spacing:3px;text-transform:uppercase;color:var(--gold2);font-weight:700;margin-bottom:14px;}
+  .kpis{display:flex;gap:14px;flex-wrap:wrap;}
+  .kpi3{flex:1;min-width:150px;background:rgba(10,17,48,.55);border:1px solid rgba(255,255,255,.07);border-radius:12px;padding:13px 15px;}
+  .kpi3 .n{font-size:28px;font-weight:800;color:#fff;}
+  .kpi3 .u{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--mut);margin-top:4px;}
+
+  /* canal */
+  .canal{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+  .cbox{background:linear-gradient(180deg,rgba(20,29,73,.85),rgba(13,21,53,.85));border:1px solid var(--line);border-radius:14px;padding:18px 20px;}
+  .cbox h4{font-size:15px;font-weight:800;color:var(--gold2);margin-bottom:10px;display:flex;align-items:center;gap:9px;}
+  .cbox ul{list-style:none;}
+  .cbox li{position:relative;padding-left:18px;margin-bottom:7px;font-size:14px;line-height:1.5;color:#dfe4f2;}
+  .cbox li::before{content:"";position:absolute;left:2px;top:8px;width:6px;height:6px;border-radius:2px;background:var(--gold);}
+  @media(max-width:640px){.canal{grid-template-columns:1fr;}}
+
+  .aviso{margin-top:30px;border-left:3px solid var(--gold);background:rgba(255,255,255,.03);border-radius:0 12px 12px 0;padding:16px 20px;font-size:13.5px;color:var(--mut);line-height:1.6;}
+  .aviso b{color:var(--gold2);}
+  footer{text-align:center;margin-top:36px;font-size:12px;letter-spacing:2px;color:#6f7ba0;}
+
+  /* ---------- walking avatar (auto-climb) ---------- */
+  .climber{position:absolute;left:0;top:0;width:34px;height:50px;z-index:7;pointer-events:none;
+    transition:transform 1.15s cubic-bezier(.45,.05,.35,1);will-change:transform;
+    filter:drop-shadow(0 7px 9px rgba(0,0,0,.45));}
+  .climber svg{width:34px;height:50px;overflow:visible;}
+  .climber .legA,.climber .legB{transform-box:fill-box;transform-origin:top center;}
+  .climber.walk .bobg{animation:clbob .34s ease-in-out infinite;}
+  .climber.walk .legA{animation:clswA .34s ease-in-out infinite;}
+  .climber.walk .legB{animation:clswB .34s ease-in-out infinite;}
+  @keyframes clbob{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}
+  @keyframes clswA{0%,100%{transform:rotate(17deg)}50%{transform:rotate(-17deg)}}
+  @keyframes clswB{0%,100%{transform:rotate(-17deg)}50%{transform:rotate(17deg)}}
+  .clip-glow{animation:clglow 1.6s ease-in-out infinite;}
+  @keyframes clglow{0%,100%{opacity:.55}50%{opacity:1}}
+
+  /* ---------- locked (candado) ---------- */
+  .rung .lockb{display:none;}
+  .rung.bloq{filter:grayscale(.12);}
+  .rung.bloq .lockb{display:block;position:absolute;top:10px;right:10px;width:21px;height:21px;opacity:.9;}
+  .rung.bloq .lockb svg{width:21px;height:21px;stroke:var(--bloq);fill:none;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round;}
+  .rung.bloq .kpi{color:#c7cee1;}
+  .rung.bloq .nl{color:#d3d9ec;}
+  .badge{position:relative;}
+  .lockchip{position:absolute;right:-7px;bottom:-7px;width:21px;height:21px;background:var(--ink2);
+    border:1px solid var(--bloq);border-radius:50%;display:grid;place-items:center;box-shadow:0 3px 8px rgba(0,0,0,.35);}
+  .lockchip svg{width:11px;height:11px;stroke:var(--bloq);fill:none;stroke-width:2.1;stroke-linecap:round;stroke-linejoin:round;}
+  .level.locked .badge svg{stroke:var(--bloq);}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <svg class="heromotif" viewBox="0 0 340 250">
+      <defs><linearGradient id="gg" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#9C7B22"/><stop offset="1" stop-color="#d8b65a"/></linearGradient></defs>
+      <rect x="10" y="180" width="40" height="60" rx="5" fill="url(#gg)"/>
+      <rect x="70" y="130" width="40" height="110" rx="5" fill="url(#gg)"/>
+      <rect x="130" y="80" width="40" height="160" rx="5" fill="url(#gg)"/>
+      <rect x="190" y="40" width="40" height="200" rx="5" fill="url(#gg)"/>
+      <path d="M15 175 L95 120 L150 140 L300 25" stroke="#d8b65a" stroke-width="6" fill="none" stroke-linecap="round"/>
+      <path d="M300 25 L255 32 M300 25 L294 70" stroke="#d8b65a" stroke-width="6" fill="none" stroke-linecap="round"/>
+    </svg>
+    <div class="brand"><span class="dot"></span> Weltrade</div>
+    <div class="kicker">Plan de Crecimiento</div>
+    <div class="goldline"></div>
+    <h1>De Trader <span>a Empresario</span></h1>
+    <div class="sub">Ruta por niveles anclada a tus KPIs · Gaibor</div>
+    <div class="idrow">
+      <div><div class="lab">IB / PartnerID</div><div class="val gold">61694</div></div>
+      <div><div class="lab">Punto de partida</div><div class="val">Junio 2026</div></div>
+      <div><div class="lab">Tier actual</div><div class="val">Strategist · 32%</div></div>
+    </div>
+  </header>
+
+  <!-- RUTA VISUAL -->
+  <h2 class="sec">La ruta de un vistazo</h2>
+  <div class="seclead">Cada nivel se desbloquea sosteniendo las 3 métricas: FTD · Depósito neto · Spread. Si no se sostienen, no se avanza.</div>
+  <div class="rutabox">
+    <div class="stair">
+      <div class="rung logrado">
+        <div class="youare">Gaibor está acá</div>
+        <div class="est">Ya logrado</div>
+        <div class="nl">Punto de partida</div><div class="nsub">Junio 2026</div>
+        <div class="kpi">42<small>FTD</small>7.951 USD<small>Depósito neto</small>21.450<small>lotes spread</small></div>
+        <div class="unl">Es el piso. No paga extra: es la <b>base</b> del plan.</div>
+      </div>
+      <div class="rung sig">
+        <div class="est">Siguiente objetivo</div>
+        <div class="nl">Nivel 1</div><div class="nsub">+20% sobre el piso</div>
+        <div class="kpi">50<small>FTD</small>9.541 USD<small>Depósito neto</small>25.740<small>lotes spread</small></div>
+        <div class="unl">Desbloquea: <b>Master IB</b> · torneo + bono 100% · permanente</div>
+      </div>
+      <div class="rung bloq">
+        <div class="lockb"><svg viewBox="0 0 24 24"><rect x="4.5" y="10.5" width="15" height="9.5" rx="2.2"/><path d="M8 10.5 V7.5 a4 4 0 0 1 8 0 v3"/></svg></div>
+        <div class="est">Bloqueado</div>
+        <div class="nl">Nivel 2</div><div class="nsub">meta propia</div>
+        <div class="kpi">80<small>FTD</small>20.000 USD<small>Depósito neto</small>40.000<small>lotes spread</small></div>
+        <div class="unl">Desbloquea: <b>apoyo de marketing · 2.000 USD</b> · al completar el KPI completo</div>
+      </div>
+      <div class="rung bloq">
+        <div class="lockb"><svg viewBox="0 0 24 24"><rect x="4.5" y="10.5" width="15" height="9.5" rx="2.2"/><path d="M8 10.5 V7.5 a4 4 0 0 1 8 0 v3"/></svg></div>
+        <div class="est">Bloqueado</div>
+        <div class="nl">Nivel 3</div><div class="nsub">sostenido 3 meses</div>
+        <div class="kpi" style="min-height:76px;display:flex;align-items:center;">Mantener Nivel 2</div>
+        <div class="unl">Desbloquea: <b>evento personal</b> · sujeto a resultados</div>
+      </div>
+      <div class="rung bloq">
+        <div class="lockb"><svg viewBox="0 0 24 24"><rect x="4.5" y="10.5" width="15" height="9.5" rx="2.2"/><path d="M8 10.5 V7.5 a4 4 0 0 1 8 0 v3"/></svg></div>
+        <div class="est">Bloqueado</div>
+        <div class="nl">Nivel 4</div><div class="nsub">2x Nivel 2</div>
+        <div class="kpi">160<small>FTD</small>40.000 USD<small>Depósito neto</small>80.000<small>lotes spread</small></div>
+        <div class="unl">Desbloquea: subir a <b>Ambassador 35%</b> (+3 pp)</div>
+      </div>
+      <div class="rung bloq">
+        <div class="lockb"><svg viewBox="0 0 24 24"><rect x="4.5" y="10.5" width="15" height="9.5" rx="2.2"/><path d="M8 10.5 V7.5 a4 4 0 0 1 8 0 v3"/></svg></div>
+        <div class="est">Bloqueado</div>
+        <div class="nl">Nivel 5</div><div class="nsub">2x Nivel 4</div>
+        <div class="kpi">320<small>FTD</small>80.000 USD<small>Depósito neto</small>160.000<small>lotes spread</small></div>
+        <div class="unl">Desbloquea: <b>comisión Master IB al 35%</b></div>
+      </div>
+    </div>
+    <div class="legend">
+      <span><i style="background:#3fae6b"></i> Logrado</span>
+      <span><i style="background:#d8b65a"></i> Siguiente objetivo</span>
+      <span><i style="background:#8892b0"></i> Bloqueado / futuro</span>
+    </div>
+  </div>
+
+  <div class="callout">
+    <b>Cómo se avanza.</b> El avance depende de KPIs <b>sostenidos</b>, no del tiempo. <b>Retroceso:</b> si un KPI cae por debajo del piso logrado hay <b>1 mes de gracia</b>; si al segundo mes sigue por debajo, el nivel queda en pausa —no se retira lo ya obtenido (Master IB es permanente), pero no se avanza hasta recuperar el piso.
+  </div>
+
+  <!-- DETALLE -->
+  <h2 class="sec">El detalle, nivel por nivel</h2>
+  <div class="seclead">Toca cada nivel para ver la meta exacta, cómo lograrlo y qué desbloquea.</div>
+
+  <div class="base">
+    <h3>Punto de partida — mes actual (ya logrado)</h3>
+    <div class="kpis">
+      <div class="kpi3"><div class="n" data-count="42">0</div><div class="u">FTD</div></div>
+      <div class="kpi3"><div class="n" data-count="7951" data-suffix=" USD">0</div><div class="u">Depósito neto</div></div>
+      <div class="kpi3"><div class="n" data-count="21450" data-suffix=" lotes">0</div><div class="u">Spread</div></div>
+    </div>
+  </div>
+
+  <div id="levels">
+    <div class="rail" id="rail"></div>
+
+    <!-- Nivel 1 -->
+    <div class="level" data-earn="8.240">
+      <div class="lhead">
+        <div class="badge"><svg viewBox="0 0 24 24"><path d="M4 17 L6 8 L10 13 L12 6 L14 13 L18 8 L20 17 Z"/><line x1="4" y1="20" x2="20" y2="20"/></svg></div>
+        <div class="ltitle"><div class="nvl">Nivel 1</div><div class="t">Desbloquear Master IB</div>
+          <div class="unlock">▸ Master IB · torneo (premios) + bono 100% · permanente</div></div>
+        <div class="esttag sig">Siguiente</div><div class="chev">⌄</div>
+      </div>
+      <div class="lbody"><div class="inner">
+        <div class="metabar"><span class="chip">≥50 FTD</span><span class="chip">≥9.541 USD</span><span class="chip">≥25.740 lotes</span></div>
+        <div class="field"><div class="fl">Meta (KPI)</div>
+          <ul><li>Superar el piso en <b>≥20%</b> y sostenerlo. Se evalúa al cierre del mes. Master IB es <b>permanente</b> una vez logrado.</li></ul></div>
+        <div class="field"><div class="fl">Cómo lograrlo</div>
+          <ul>
+            <li>WhatsApp: contactar 1-a-1 a cada nuevo registro para asegurar el FTD.</li>
+            <li>Telegram: 2 en vivos/semana + 1 análisis diario.</li>
+            <li>Pedir 1 referido a cada cliente activo.</li>
+            <li>Empezar a activar volumen con los clientes que ya depositaron.</li>
+          </ul></div>
+        <div class="field"><div class="fl">Desbloquea</div>
+          <ul><li>Estatus Master IB (permanente): 1 torneo con premios (una sola vez) + bono +100%.</li></ul></div>
+      </div></div>
+    </div>
+
+    <!-- Nivel 2 -->
+    <div class="level" data-earn="12.800">
+      <div class="lhead">
+        <div class="badge"><svg viewBox="0 0 24 24"><path d="M3 10 L3 14 L9 14 L16 18 L16 6 L9 10 Z"/><path d="M16 9 A3 3 0 0 1 16 15"/><line x1="6" y1="14" x2="7" y2="20"/></svg></div>
+        <div class="ltitle"><div class="nvl">Nivel 2</div><div class="t">Apoyo de marketing</div>
+          <div class="unlock">▸ Apoyo de 2.000 USD · pago por resultados</div></div>
+        <div class="esttag bloq">Bloqueado</div><div class="chev">⌄</div>
+      </div>
+      <div class="lbody"><div class="inner">
+        <div class="metabar"><span class="chip">80 FTD</span><span class="chip">20.000 USD</span><span class="chip">40.000 lotes</span></div>
+        <div class="field"><div class="fl">Meta (KPI)</div>
+          <ul><li>Alcanzar 80 FTD · 20.000 USD · 40.000 lotes en 1 mes.</li></ul></div>
+        <div class="field"><div class="fl">Cómo funciona el apoyo</div>
+          <ul><li>Es un <b>pago por resultados</b>, no un anticipo: se libera un apoyo de <b>2.000 USD</b> únicamente al completar el <b>Nivel 2 completo</b> (80 FTD · 20.000 USD · 40.000 lotes, las tres métricas juntas). No se libera nada por cumplir solo una parte.</li></ul></div>
+        <div class="field"><div class="fl">Cómo lograrlo</div>
+          <ul>
+            <li>CopyTrading para activar a quien no opera solo.</li>
+            <li>Torneo + bono en la comunidad para subir volumen y depósitos.</li>
+            <li>Escalar la captación con campaña o colaboración con creadores.</li>
+          </ul></div>
+        <div class="field"><div class="fl">Desbloquea</div>
+          <ul><li>Apoyo de marketing de <b>2.000 USD</b>, liberado al completar el Nivel 2. El acompañamiento continúa mientras se sostienen los KPIs (base del Nivel 3).</li></ul></div>
+      </div></div>
+    </div>
+
+    <!-- Nivel 3 -->
+    <div class="level" data-earn="">
+      <div class="lhead">
+        <div class="badge"><svg viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="15" rx="2"/><line x1="4" y1="9" x2="20" y2="9"/><line x1="8" y1="3" x2="8" y2="6"/><line x1="16" y1="3" x2="16" y2="6"/><path d="M12 12 l1 2 2 .3 -1.5 1.5 .4 2 -1.9 -1 -1.9 1 .4 -2 -1.5 -1.5 2 -.3 z"/></svg></div>
+        <div class="ltitle"><div class="nvl">Nivel 3</div><div class="t">Evento personal</div>
+          <div class="unlock">▸ Evento propio · sujeto a evaluación</div></div>
+        <div class="esttag bloq">Bloqueado</div><div class="chev">⌄</div>
+      </div>
+      <div class="lbody"><div class="inner">
+        <div class="metabar"><span class="chip">Mantener Nivel 2 · 3 meses</span></div>
+        <div class="field"><div class="fl">Meta (KPI)</div>
+          <ul><li>Mantener ≥80 FTD · ≥20.000 USD · ≥40.000 lotes durante los 3 meses del apoyo.</li></ul></div>
+        <div class="field"><div class="fl">Requisito</div>
+          <ul><li>No hay dos patrocinios a la vez. Se desbloquea al finalizar el apoyo de marketing, manteniendo los KPIs durante ese período.</li></ul></div>
+        <div class="field"><div class="fl">Nota</div>
+          <ul><li>El evento se evalúa según los resultados del apoyo. La decisión se toma con el manager y puede ser positiva o negativa.</li></ul></div>
+      </div></div>
+    </div>
+
+    <!-- Nivel 4 -->
+    <div class="level" data-earn="28.000">
+      <div class="lhead">
+        <div class="badge"><svg viewBox="0 0 24 24"><ellipse cx="12" cy="7" rx="7" ry="3"/><path d="M5 7 v4 c0 1.7 3.1 3 7 3 s7 -1.3 7 -3 v-4"/><path d="M5 11 v4 c0 1.7 3.1 3 7 3 s7 -1.3 7 -3 v-4"/><path d="M12 20 v-4 M10 18 l2 2 2 -2"/></svg></div>
+        <div class="ltitle"><div class="nvl">Nivel 4</div><div class="t">Aumento de comisión IB</div>
+          <div class="unlock">▸ Salto de tier · clientes directos</div></div>
+        <div class="esttag bloq">Bloqueado</div><div class="chev">⌄</div>
+      </div>
+      <div class="lbody"><div class="inner">
+        <div class="metabar"><span class="chip">160 FTD</span><span class="chip">40.000 USD</span><span class="chip">80.000 lotes</span></div>
+        <div class="field"><div class="fl">Meta (KPI)</div>
+          <ul><li>El doble del Nivel 2 → 160 FTD · 40.000 USD · 80.000 lotes.</li></ul></div>
+        <div class="field"><div class="fl">Desbloquea (concreto)</div>
+          <ul><li>Subir de tier en clientes directos: de <b>Strategist 32% a Ambassador 35%</b> (+3 puntos porcentuales). No es "una conversación": es un salto de tier medible.</li></ul></div>
+      </div></div>
+    </div>
+
+    <!-- Nivel 5 -->
+    <div class="level" data-earn="">
+      <div class="lhead">
+        <div class="badge"><svg viewBox="0 0 24 24"><path d="M5 21 V10 l4 -2 v13 M9 8 l6 -3 v16 M15 5 l4 2 v14 M4 21 h16"/><path d="M8 4 l1.2 1.8 2 .3 -1.5 1.4 .4 2 -1.9 -1 -1.9 1 .4 -2 -1.5 -1.4 2 -.3 z"/></svg></div>
+        <div class="ltitle"><div class="nvl">Nivel 5</div><div class="t">Aumento de comisión Master IB</div>
+          <div class="unlock">▸ Comisión Master IB al 35%</div></div>
+        <div class="esttag bloq">Bloqueado</div><div class="chev">⌄</div>
+      </div>
+      <div class="lbody"><div class="inner">
+        <div class="metabar"><span class="chip">320 FTD</span><span class="chip">80.000 USD</span><span class="chip">160.000 lotes</span></div>
+        <div class="field"><div class="fl">Meta (KPI)</div>
+          <ul><li>El doble del Nivel 4 → 320 FTD · 80.000 USD · 160.000 lotes.</li></ul></div>
+        <div class="field"><div class="fl">Desbloquea</div>
+          <ul><li>Aumento de la comisión Master IB a <b>35%</b> (sobre la actividad de tu red de sub-IBs). Distinta de la comisión de clientes directos del Nivel 4.</li></ul></div>
+      </div></div>
+    </div>
+  </div>
+
+  <!-- CANAL -->
+  <h2 class="sec">Diagnóstico de canal y tácticas</h2>
+  <div class="seclead">Tácticas específicas para los canales reales de Gaibor: Telegram (comunidad) + WhatsApp (contacto directo).</div>
+  <div class="canal">
+    <div class="cbox"><h4>Telegram · comunidad</h4>
+      <ul>
+        <li>2 en vivos/semana + 1 análisis diario en el canal.</li>
+        <li>1 reto de volumen mensual (objetivo de lotes por semana).</li>
+        <li>Sala de señales / CopyTrading para activar a los pasivos.</li>
+      </ul></div>
+    <div class="cbox"><h4>WhatsApp · directo</h4>
+      <ul>
+        <li>Difusión diaria breve (setup del día + CTA).</li>
+        <li>Contacto 1-a-1 a cada nuevo registro para asegurar el FTD.</li>
+        <li>Reactivación de inactivos con una oferta puntual.</li>
+      </ul></div>
+  </div>
+  <div class="seclead" style="margin-top:12px;font-style:italic;">Para calibrar metas de captación conviene relevar tamaño de audiencia y frecuencia actual de cada canal.</div>
+
+  <div class="aviso">
+    <b>Aviso.</b> Esto es un plan, no una garantía. El avance depende de KPIs sostenidos, no del tiempo transcurrido. Las cifras de ganancia son estimaciones sobre tu tier de comisión (Strategist 32% / Ambassador 35%) y varían según el instrumento y las condiciones. Los resultados dependen del trabajo, la constancia y el enfoque del IB.
+  </div>
+
+  <footer>Documento confidencial · Programa para Introducing Brokers de Weltrade</footer>
+</div>
+
+<script>
+  var levels = Array.prototype.slice.call(document.querySelectorAll('.level'));
+  // ganancia meter
+  levels.forEach(function(lv){
+    var earn = lv.getAttribute('data-earn');
+    if(earn){
+      var inner = lv.querySelector('.inner');
+      var em = document.createElement('div');
+      em.className='earn';
+      em.innerHTML='<div class="er"><div class="ei">Tu ganancia estimada</div><div class="ev">&#8776; '+earn+' USD <small>/ mes</small></div></div>'+
+        '<div class="ehint">Estimación sobre tu tier de comisión aplicado al spread de este nivel.</div>';
+      inner.appendChild(em);
+    }
+  });
+  // expand
+  levels.forEach(function(lv){
+    var head=lv.querySelector('.lhead'), body=lv.querySelector('.lbody');
+    head.addEventListener('click',function(){
+      var open=lv.classList.contains('open');
+      levels.forEach(function(o){o.classList.remove('open');o.querySelector('.lbody').style.maxHeight=null;});
+      if(!open){lv.classList.add('open');body.style.maxHeight=body.scrollHeight+'px';}
+    });
+  });
+  window.addEventListener('resize',function(){var o=document.querySelector('.level.open .lbody');if(o)o.style.maxHeight=o.scrollHeight+'px';});
+  // reveal + rail
+  var rail=document.getElementById('rail'),shown=0;
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('show');io.unobserve(e.target);shown++;rail.style.height=Math.round(shown/levels.length*100)+'%';}});},{threshold:.3});
+  levels.forEach(function(l){io.observe(l);});
+  // counters
+  function anim(el){var t=+el.getAttribute('data-count'),s=el.getAttribute('data-suffix')||'',st=null,d=1100;
+    function step(ts){if(!st)st=ts;var p=Math.min((ts-st)/d,1),e=1-Math.pow(1-p,3);el.textContent=Math.round(t*e).toLocaleString('es-ES')+s;if(p<1)requestAnimationFrame(step);}requestAnimationFrame(step);}
+  var kio=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){anim(e.target);kio.unobserve(e.target);}});},{threshold:.6});
+  document.querySelectorAll('.kpi3 .n[data-count]').forEach(function(el){kio.observe(el);});
+
+  // candado en las tarjetas de detalle bloqueadas
+  levels.forEach(function(lv){
+    var tag=lv.querySelector('.esttag');
+    if(tag && tag.classList.contains('bloq')){
+      lv.classList.add('locked');
+      var b=lv.querySelector('.badge');
+      if(b){
+        var lk=document.createElement('div');lk.className='lockchip';
+        lk.innerHTML='<svg viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11 V8 a4 4 0 0 1 8 0 v3"/></svg>';
+        b.appendChild(lk);
+      }
+    }
+  });
+
+  // ---------- avatar que sube la escalera solo ----------
+  (function(){
+    var stair=document.querySelector('.stair'); if(!stair) return;
+    var rungs=Array.prototype.slice.call(stair.querySelectorAll('.rung'));
+    if(!rungs.length) return;
+    var climber=document.createElement('div');
+    climber.className='climber';
+    climber.innerHTML=
+      '<svg viewBox="0 0 34 50">'+
+        '<ellipse cx="17" cy="47" rx="10" ry="2.6" fill="rgba(0,0,0,.30)"/>'+
+        '<g class="bobg">'+
+          '<rect class="legA" x="13" y="31" width="3.6" height="13.5" rx="1.8" fill="#8a6a1c"/>'+
+          '<rect class="legB" x="17.4" y="31" width="3.6" height="13.5" rx="1.8" fill="#8a6a1c"/>'+
+          '<rect x="11" y="16" width="12" height="18" rx="5" fill="#d8b65a"/>'+
+          '<rect x="11" y="16" width="12" height="18" rx="5" fill="none" stroke="#9C7B22" stroke-width="1"/>'+
+          '<circle cx="17" cy="9.5" r="6.4" fill="#f4d38f"/>'+
+          '<circle cx="17" cy="9.5" r="6.4" fill="none" stroke="#9C7B22" stroke-width="1.1"/>'+
+          '<path d="M11.4 8 a6 6 0 0 1 11.2 0" fill="#3a2c0c"/>'+
+        '</g>'+
+      '</svg>';
+    stair.appendChild(climber);
+
+    function posFor(i){
+      var r=rungs[i].getBoundingClientRect(), s=stair.getBoundingClientRect();
+      return { x:(r.left-s.left)+14, y:(r.top-s.top)-46 };
+    }
+    function place(i,animate){
+      var p=posFor(i);
+      if(!animate){ climber.style.transition='none'; }
+      climber.style.transform='translate('+p.x+'px,'+p.y+'px)';
+      if(!animate){ void climber.offsetWidth; climber.style.transition=''; }
+    }
+    var cur=0, walkT=null, loopT=null;
+    function stepUp(){
+      if(cur < rungs.length-1){
+        cur++; climber.classList.add('walk'); place(cur,true);
+        clearTimeout(walkT); walkT=setTimeout(function(){climber.classList.remove('walk');},1150);
+        loopT=setTimeout(stepUp, 2350);
+      } else {
+        // llegó a la cima: pausa y reinicia abajo
+        loopT=setTimeout(function(){
+          climber.classList.remove('walk'); cur=0; place(0,false);
+          loopT=setTimeout(stepUp, 1500);
+        }, 2600);
+      }
+    }
+    function start(){ place(0,false); clearTimeout(loopT); loopT=setTimeout(stepUp, 1300); }
+    window.addEventListener('resize', function(){ place(cur,false); });
+    if(document.readyState==='complete'){ setTimeout(start,350); }
+    else { window.addEventListener('load', function(){ setTimeout(start,350); }); }
+  })();
+</script>
+</body>
+</html>
